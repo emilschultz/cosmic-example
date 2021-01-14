@@ -12,8 +12,8 @@ function HomeContainer() {
     });
 
     bucket.getObject({
-      slug: 'velkommen-til-min-hjemmeside',
-      props: 'slug,title,content'
+      slug: 'velkommen-til-min-hjemmeside', // Merk! Denne slugen er bare et eksempel - endre den!
+      props: 'title,content'
     })
       .then(data => {
         setPageData(data.object);
