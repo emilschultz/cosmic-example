@@ -4,6 +4,7 @@ import Cosmic from 'cosmicjs';
 import SiteNavigation from '../../components/SiteNavigation';
 import Container from '../../components/Container';
 import PageTitle from '../../components/PageTitle';
+import HomeContent from '../../components/HomeContent';
 
 function HomeContainer() {
   const [pageData, setPageData] = useState(null);
@@ -39,7 +40,7 @@ function HomeContainer() {
         <SiteNavigation />
         <Container as="main">
           <PageTitle>{pageData.title}</PageTitle>
-          <div dangerouslySetInnerHTML={{__html: pageData.content}} />
+          <HomeContent dangerouslySetInnerHTML={{__html: pageData.content}} />
         </Container>
       </>
     )
