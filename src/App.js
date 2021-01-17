@@ -1,5 +1,7 @@
 import React from 'react';
 
+import GlobalStyle from './components/GlobalStyle';
+
 import HomeContainer from './containers/HomeContainer';
 import AboutContainer from './containers/AboutContainer';
 import ContactContainer from './containers/ContactContainer';
@@ -13,6 +15,7 @@ import {
 function App() {
   return (
     <>
+      <GlobalStyle />
       <Router>
         <Switch>
           <Route path="/om-meg">
