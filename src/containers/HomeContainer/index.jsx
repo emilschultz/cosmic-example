@@ -2,6 +2,8 @@ import React, { useState, useEffect } from 'react';
 import Cosmic from 'cosmicjs';
 
 import SiteNavigation from '../../components/SiteNavigation';
+import Container from '../../components/Container';
+import PageTitle from '../../components/PageTitle';
 
 function HomeContainer() {
   const [pageData, setPageData] = useState(null);
@@ -35,10 +37,10 @@ function HomeContainer() {
     return (
       <>
         <SiteNavigation />
-        <main>
-          <h1>{pageData.title}</h1>
+        <Container as="main">
+          <PageTitle>{pageData.title}</PageTitle>
           <div dangerouslySetInnerHTML={{__html: pageData.content}} />
-        </main>
+        </Container>
       </>
     )
   }

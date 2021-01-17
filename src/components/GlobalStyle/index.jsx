@@ -13,6 +13,11 @@ const GlobalStyle = createGlobalStyle`
     padding: 0;
   }
 
+  html {
+    font-size: 20px;
+    line-height: 1.5;
+  }
+
   body {
     font-family: "Lato", sans-serif;
   }
