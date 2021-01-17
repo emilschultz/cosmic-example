@@ -1,18 +1,18 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 
 function SiteNavigation() {
   return (
     <nav>
       <ul>
         <li>
-          <Link to="/">Hjem</Link>
+          <NavLink to="/">Hjem</NavLink>
         </li>
         <li>
-          <Link to="/om-meg">Om meg</Link>
+          <NavLink to="/om-meg">Om meg</NavLink>
         </li>
         <li>
-          <Link to="/kontakt">Kontakt</Link>
+          <NavLink to="/kontakt">Kontakt</NavLink>
         </li>
       </ul>
     </nav>

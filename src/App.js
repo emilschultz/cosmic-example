@@ -1,7 +1,5 @@
 import React from 'react';
 
-import SiteNavigation from './components/SiteNavigation';
-
 import HomeContainer from './containers/HomeContainer';
 import AboutContainer from './containers/AboutContainer';
 import ContactContainer from './containers/ContactContainer';
@@ -16,7 +14,6 @@ function App() {
   return (
     <>
       <Router>
-        <SiteNavigation />
         <Switch>
           <Route path="/om-meg">
             <AboutContainer />
