@@ -5,8 +5,11 @@ const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
 
 module.exports = env => {
-  console.log(env);
-  
+  const environment = {...env};
+  if (Object.keys(environment) > 0) {
+    process.env = {...environment, ...process.env};
+  }
+
   return {
     mode: 'production',
     entry: {
