@@ -3,6 +3,7 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
 const Dotenv = require('dotenv-webpack');
+const CopyPlugin = require('copy-webpack-plugin');
 
 module.exports = () => {
   return {
@@ -21,7 +22,11 @@ module.exports = () => {
         template: './src/template.html',
         title: 'Produksjon'
       }),
-      new webpack.HotModuleReplacementPlugin()
+      new CopyPlugin({
+        patterns: [
+          {from: "other", to: "build"}
+        ]
+      })
     ],
     output: {
       filename: '[name].bundle.js',
