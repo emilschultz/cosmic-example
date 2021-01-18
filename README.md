@@ -1,6 +1,6 @@
-# react-starter
+# En eksempelsite med CosmicJS
 
-Et enkelt og greit starterprosjekt for å lage React-apper uten å bruke create-react-app. Gir deg mer oversikt og kontroll over hva som faktisk skjer i prosessen når vi lager React-apper, og lar deg styre byggeprosessen i Webpack i større grad.
+Dette er en eksempelsite med CosmicJS som vi bruker i undervisningen ved frontendutviklingsstudiet i Fagskolen Kristiania, våren 2021. 
 
 ## Komme i gang
 + Klon prosjektet lokalt med `npx degit vegar-codes/react-starter <mappenavn>`.
