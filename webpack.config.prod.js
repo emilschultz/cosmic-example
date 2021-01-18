@@ -24,8 +24,8 @@ module.exports = () => {
       }),
       new CopyPlugin({
         patterns: [
-          {from: "other", to: "build"}
-        ]
+          {from: './other'}
+        ],
       })
     ],
     output: {
