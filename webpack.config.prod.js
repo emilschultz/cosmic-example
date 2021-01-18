@@ -2,10 +2,9 @@ const path = require('path');
 const HtmlWebpackPlugin = require('html-webpack-plugin');
 const { CleanWebpackPlugin } = require('clean-webpack-plugin');
 const webpack = require('webpack');
+const Dotenv = require('dotenv-webpack');
 
-module.exports = env => {
-  console.log(env);
-  
+module.exports = () => {
   return {
     mode: 'production',
     entry: {
@@ -13,9 +12,8 @@ module.exports = env => {
     },
     devtool: 'source-map',
     plugins: [
-      new webpack.EnvironmentPlugin({
-        'BUCKET_SLUG': env.BUCKET_SLUG,
-        'READ_KEY': env.READ_KEY
+      new Dotenv({
+        path: './.production.env'
       }),
       new CleanWebpackPlugin(),
       new HtmlWebpackPlugin({
