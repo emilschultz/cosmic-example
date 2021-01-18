@@ -7,7 +7,7 @@ import PageTitle from '../../components/PageTitle';
 import HomeContent from '../../components/HomeContent';
 import PageSkeleton from '../../components/PageSkeleton';
 
-function HomeContainer() {
+function BlogPostContainer({ match }) {
   const [pageData, setPageData] = useState(null);
 
   useEffect(() => {
@@ -18,8 +18,8 @@ function HomeContainer() {
     });
 
     bucket.getObject({
-      slug: 'velkommen-til-min-hjemmeside', // Merk! Denne slugen er bare et eksempel - endre den!
-      props: 'title,content'
+      slug: match.params.slug,
+      props: 'slug,title,content'
     })
       .then(data => {
         setPageData(data.object);
@@ -54,4 +54,4 @@ function HomeContainer() {
   )
 };
 
-export default HomeContainer;
+export default BlogPostContainer;

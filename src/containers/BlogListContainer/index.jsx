@@ -4,10 +4,10 @@ import Cosmic from 'cosmicjs';
 import SiteNavigation from '../../components/SiteNavigation';
 import Container from '../../components/Container';
 import PageTitle from '../../components/PageTitle';
-import HomeContent from '../../components/HomeContent';
+import PostLink from '../../components/PostLink';
 import PageSkeleton from '../../components/PageSkeleton';
 
-function HomeContainer() {
+function BlogListContainer() {
   const [pageData, setPageData] = useState(null);
 
   useEffect(() => {
@@ -17,12 +17,14 @@ function HomeContainer() {
       read_key: process.env.READ_KEY
     });
 
-    bucket.getObject({
-      slug: 'velkommen-til-min-hjemmeside', // Merk! Denne slugen er bare et eksempel - endre den!
-      props: 'title,content'
+    bucket.getObjects({
+      type: 'blog-posts',
+      limit: 5,
+      props: 'slug,title,content',
+      sort: '-created_at'
     })
       .then(data => {
-        setPageData(data.object);
+        setPageData(data);
       })
       .catch(error => {
         console.error(error);
@@ -40,8 +42,17 @@ function HomeContainer() {
       <>
         <SiteNavigation />
         <Container as="main">
-          <PageTitle>{pageData.title}</PageTitle>
-          <HomeContent dangerouslySetInnerHTML={{__html: pageData.content}} />
+          <PageTitle>Mine blogginnlegg</PageTitle>
+          {pageData.objects.map(item => {
+            return (
+              <PostLink 
+                url={`/blogg/${item.slug}`} 
+                title={item.title} 
+                date={`01.01.2021`}
+                key={item.slug}
+              />
+            );
+          })}
         </Container>
       </>
     )
@@ -54,4 +65,4 @@ function HomeContainer() {
   )
 };
 
-export default HomeContainer;
+export default BlogListContainer;
