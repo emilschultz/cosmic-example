@@ -2,6 +2,10 @@ import React, { useState, useEffect } from 'react';
 import Cosmic from 'cosmicjs';
 
 import SiteNavigation from '../../components/SiteNavigation';
+import Container from '../../components/Container';
+import PageTitle from '../../components/PageTitle';
+import HomeContent from '../../components/HomeContent';
+import PageSkeleton from '../../components/PageSkeleton';
 
 function ContactContainer() {
   const [pageData, setPageData] = useState(null);
@@ -27,7 +31,7 @@ function ContactContainer() {
 
   function renderSkeleton() {
     return (
-      <p>Laster data...</p>
+      <PageSkeleton />
     );
   }
 
@@ -35,10 +39,10 @@ function ContactContainer() {
     return (
       <>
         <SiteNavigation />
-        <main>
-          <h1>{pageData.title}</h1>
-          <div dangerouslySetInnerHTML={{__html: pageData.content}} />
-        </main>
+        <Container as="main">
+          <PageTitle>{pageData.title}</PageTitle>
+          <HomeContent dangerouslySetInnerHTML={{__html: pageData.content}} />
+        </Container>
       </>
     )
   }

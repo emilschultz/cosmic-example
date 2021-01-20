@@ -11,6 +11,8 @@ import {
   Switch,
   Route
 } from 'react-router-dom';
+import BlogListContainer from './containers/BlogListContainer';
+import BlogPostContainer from './containers/BlogPostContainer';
 
 function App() {
   return (
@@ -18,15 +20,11 @@ function App() {
       <GlobalStyle />
       <Router>
         <Switch>
-          <Route path="/om-meg">
-            <AboutContainer />
-          </Route>
-          <Route path="/kontakt">
-            <ContactContainer />
-          </Route>
-          <Route path="/">
-            <HomeContainer />
-          </Route>
+          <Route path="/om-meg" component={AboutContainer} />
+          <Route path="/kontakt" component={ContactContainer} />
+          <Route path="/blogg/:slug" component={BlogPostContainer} />
+          <Route path="/blogg" component={BlogListContainer} />
+          <Route path="/" component={HomeContainer} exact />
         </Switch>
       </Router>
     </>
