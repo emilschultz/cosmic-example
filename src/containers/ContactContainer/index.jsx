@@ -1,5 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import Cosmic from 'cosmicjs';
+import Mapbox from 'mapbox-gl';
 
 import SiteNavigation from '../../components/SiteNavigation';
 import Container from '../../components/Container';
@@ -7,8 +8,13 @@ import PageTitle from '../../components/PageTitle';
 import HomeContent from '../../components/HomeContent';
 import PageSkeleton from '../../components/PageSkeleton';
 
+let map = null;
+
 function ContactContainer() {
   const [pageData, setPageData] = useState(null);
+
+  Mapbox.accessToken = process.env.MAPBOX_API_KEY;
+  const mapElement = useRef(null);
 
   useEffect(() => {
     const client = new Cosmic();
@@ -18,7 +24,7 @@ function ContactContainer() {
     });
 
     bucket.getObject({
-      slug: 'kontakt-meg', // Merk! Denne slugen er bare et eksempel - endre den!
+      slug: 'kontakt-meg',
       props: 'title,content'
     })
       .then(data => {
@@ -28,6 +34,17 @@ function ContactContainer() {
         console.error(error);
       });
   }, []);
+
+  useEffect(() => {
+    if (pageData !== null) {
+      map = new Mapbox.Map({
+        container: mapElement.current,
+        style: 'mapbox://styles/mapbox/streets-v11',
+        center: [10.81533, 61.245],
+        zoom: 5
+      });
+    }
+  }, [pageData]);
 
   function renderSkeleton() {
     return (
@@ -42,6 +59,7 @@ function ContactContainer() {
         <Container as="main">
           <PageTitle>{pageData.title}</PageTitle>
           <HomeContent dangerouslySetInnerHTML={{__html: pageData.content}} />
+          <div style={{height: '500px'}} ref={mapElement}></div>
         </Container>
       </>
     )
